@@ -58,6 +58,45 @@ app.delete("/api/persons/:id", (req, res) => {
     res.status(204).end()
 })
 
+const generateID = () => {
+    const maxId = persons.length > 0
+        ? Math.max(...persons.map(n => n.id))
+        : 0
+    return maxId + 1
+}
+
+app.post("/api/persons", (req, res) => {
+    const body = req.body
+    if (!body.name) {
+        return res.status(400).json({
+            error: "name missing"
+        })
+    }
+
+    const exists = persons.some(person => person.name === body.name)
+    if (exists) {
+        return res.status(400).json({
+            error: "name must be unique"
+        })
+    }
+
+    if (!body.number) {
+        return res.status(400).json({
+            error: "number missing"
+        })
+    }
+
+    const person = {
+        name: body.name,
+        number: body.number,
+        id: generateID(),
+    }
+
+    persons = persons.concat(person)
+    console.log(person)
+    res.json(person)
+})
+
 const PORT = 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
