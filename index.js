@@ -1,6 +1,30 @@
 const express = require("express")
+const morgan = require("morgan")
+
 const app = express()
 app.use(express.json())
+
+morgan.token('response-json', function (req, res) {
+    //console.log("Method: ", req.method)
+    //console.log("res:", res.body)
+    //console.log("req:", req.body)
+    if (req.method === "GET") {
+        return ""
+    }
+    // Log for post, delete, put and patch
+    return JSON.stringify(req.body)
+})
+
+app.use(morgan(function (tokens, req, res) {
+    return [
+      tokens.method(req, res),
+      tokens.url(req, res),
+      tokens.status(req, res),
+      tokens.res(req, res, 'content-length'), '-',
+      tokens['response-time'](req, res), 'ms',
+      tokens['response-json'](req, res)
+    ].join(' ')
+  }))
 
 let persons = [
     {
@@ -93,7 +117,7 @@ app.post("/api/persons", (req, res) => {
     }
 
     persons = persons.concat(person)
-    console.log(person)
+    //console.log(person)
     res.json(person)
 })
 
