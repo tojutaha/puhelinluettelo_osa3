@@ -3,6 +3,8 @@ const morgan = require("morgan")
 const cors = require("cors")
 
 const app = express()
+
+app.use(express.static("dist"))
 app.use(express.json())
 app.use(cors())
 
@@ -51,9 +53,11 @@ let persons = [
     }
 ]
   
+/*
 app.get("/", (req, res,) => {
     res.send("Nothing to see here.")
 })
+*/
 
 app.get("/info/", (req, res,) => {
     let currentDate = new Date()
@@ -123,7 +127,7 @@ app.post("/api/persons", (req, res) => {
     res.json(person)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
