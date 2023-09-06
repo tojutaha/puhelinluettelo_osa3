@@ -1,0 +1,49 @@
+{
+  "persons": [
+    {
+      "name": "Arto Hellas",
+      "number": "000",
+      "id": 1
+    },
+    {
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523",
+      "id": 2
+    },
+    {
+      "name": "Dan Abramov",
+      "number": "12-43-234345",
+      "id": 3
+    },
+    {
+      "name": "Mary Poppendieck",
+      "number": "39-23-6423122",
+      "id": 4
+    },
+    {
+      "name": "Test Name",
+      "number": "12-234567",
+      "id": 5
+    },
+    {
+      "name": "Added In Github",
+      "number": "555-678901",
+      "id": 6
+    },
+    {
+      "name": "Added from service",
+      "number": "999.987654",
+      "id": 7
+    },
+    {
+      "name": "Added In Github from Service",
+      "number": "123-456789",
+      "id": 8
+    },
+    {
+      "name": "Delete this",
+      "number": "1234567890",
+      "id": 9
+    }
+  ]
+}
