@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 mongoose.set("strictQuery", false)
 
-const url = process.env.MONGODB_URL_PHONEBOOK
+const url = process.env.MONGODB_URL
 console.log("connecting to MongoDB")
 mongoose.connect(url)
     .then(result => {
