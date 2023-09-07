@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-console.log(process.argv.length)
-
 if ( process.argv.length < 3) {
     console.log("Usage: node mongo.js <password> to view phonebook")
     console.log("Usage: node mongo.js <password> <\"name\"> <number> to add new entry into phonebook")
@@ -20,11 +18,11 @@ const phonebookSchema = new mongoose.Schema({
   id: String,
 })
 
-const Note = mongoose.model('Note', phonebookSchema)
+const Person = mongoose.model('person', phonebookSchema)
 if (process.argv.length == 3) {
     console.log("phonebook:")
 
-    Note.find({}).then(result => {
+    Person.find({}).then(result => {
         result.forEach(note => {
             console.log(note.name, note.number)
         })
@@ -32,7 +30,7 @@ if (process.argv.length == 3) {
     })
 
 } else if (process.argv.length == 5) {
-    const note = new Note({
+    const note = new Person({
         name: process.argv[3],
         number: process.argv[4],
         id: process.argv[4],
